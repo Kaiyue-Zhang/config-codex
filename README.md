@@ -1,7 +1,7 @@
 # config-codex
 一、让远程服务器走本地代理
 1.配置本地的.ssh/config文件：
-
+'''
 Host <随便起>
     HostName <远程主机ip名>
     User <远端用户名>
@@ -14,9 +14,12 @@ Host <随便起>
     # 建立（或复用）远端 -> 本地的反向代理通道
     # **注意**：确认本地代理端口号，远程端口号也可以自定义
     RemoteForward 127.0.0.1:7890 127.0.0.1:7890
+'''
+    
 2.编辑远程主机的~/.bashrc，把代理设置添加进去：
 
 # === SSH 反向隧道本地代理(默认开启) ===
+'''
 proxy_on() {
   export HTTP_PROXY="http://127.0.0.1:7890"
   export HTTPS_PROXY="http://127.0.0.1:7890"
@@ -34,9 +37,11 @@ else
   proxy_off
 fi
 # 手动切换命令：proxy_on / proxy_off
+'''
 3.生效：source ~/.bashrc
 4.验证：
 
+'''
 # 应显示你本地代理出口的公网 IP，表示走代理成功
 curl -s https://ipinfo.io/ip
 # 看到 7890 在监听也表示隧道正常
@@ -45,10 +50,12 @@ ss -lnpt | grep 7890
 env | grep -E 'HTTP_PROXY|HTTPS_PROXY|ALL_PROXY|NO_PROXY'
 #
 curl -I --connect-timeout 10
+'''
 以上就配置好了远程的终端代理，并且可以开多个ssh窗口。
 不过，如果你想让插件也走代理，比如codex插件，那还需要对本地的vsc做额外的如下配置：
 打开本地的vsc，按住ctrl+shift+p，输入Preferences: Open User Settings (JSON)。然后添加：
 
+'''
 {
   // 让远程扩展宿主进程自带代理环境变量（对所有远程窗口/项目生效）
   "remote.SSH.remoteEnv": {
@@ -63,6 +70,7 @@ curl -I --connect-timeout 10
   "http.proxySupport": "on",
   "http.systemCertificates": true
 }
+'''
 然后就可以了，如果不行的话，重新加载一下窗口。
 
 二、远程服务器登录codex
