@@ -77,7 +77,7 @@ curl -I --connect-timeout 10
 先在本地登录，然后找到本地.codex目录以及服务器.codex目录，把如图选中的本地文件上传上去。建议上传之前重启电脑，然后先在本地退出重新登录codex之后再做。
 <img width="1686" height="619" alt="image" src="https://github.com/user-attachments/assets/b35277a4-acd1-41bf-806b-6a3297c13a8f" />
 
-三、一个目前还不知道为什么的解决方案
+三、如果服务器还是上不了google,一个目前还不知道为什么的解决方案
 在本地电脑上发起ssh连接
 ```
 ssh -N -v <这里是.ssh文件里面写的hostname>
