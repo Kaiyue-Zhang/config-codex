@@ -82,3 +82,7 @@ curl -I --connect-timeout 10
 ```
 ssh -N -v <这里是.ssh文件里面写的hostname>
 ```
+
+四、模型一直在思考
+老外也是reconnecting，结合同事圈的各种反馈来说，我们的结论是1. 不是代理的问题。 2. gpt-5.4的问题，换成gpt-5.3-codex就没问题了
+（转自小红书）
